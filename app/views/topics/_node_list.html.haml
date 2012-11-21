@@ -1,0 +1,5 @@
+%section#stats.box
+  %strong 论坛节点
+  %ul
+    - Node.all.each do |node|
+      %li= link_to "#{node.name}(#{node.topics.count})" ,node

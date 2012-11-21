@@ -1,0 +1,22 @@
+<% @title = @node.name %>
+<%= render "shared/breadcrumb" ,links: [["首页",root_path],["论坛",topics_path],[@node.name ,""]] %>
+<div id="main" class="container-fluid">
+  <div class="content">
+    <div class ="box box_gray">
+      <div id="node_info">
+        <div>
+          <h2><%= @node.name %></h2>
+          <span class="total"><%= "共有 #{@node.topics.count} 个讨论主题" %></span>
+        </div>
+        <p>
+          <%= @node.description %>
+        </p>
+      </div>
+      <div class = "topics">
+        <%= render 'topics/topic_list' , topics: @topics %>
+      </div>
+      <%= will_paginate @topics %>
+    </div>
+  </div>  
+  <%= render "shared/sidebar"  %>
+</div>

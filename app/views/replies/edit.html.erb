@@ -1,0 +1,20 @@
+
+<%= render "shared/breadcrumb" ,links: [["首页",root_path],["论坛",topics_path],[@topic.node.name ,@topic.node],["浏览帖子",""]] %>
+<div id="main" class="container-fluid">
+  <div class="content">
+    <div class="box">
+      <%= simple_form_for([@topic,@reply]) do |f| %>
+        <fieldset>
+          <legend><%= t("reply.edit_reply") %></legend>
+          <%= f.input :content , :as => :text , :input_html => {:class => "topic_editro xxlarge",:rows => "15"}%>
+          <div class="form-actions">
+            <%= f.submit t("common.save"),:class => "btn btn-primary",'data-disable-width' => t("common.saving")%>
+            <a href="<%= topic_path(@topic)%>" class="btn"> <%= t("common.cancel")%> </a>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>  
+  
+  <%= render "shared/sidebar" %>
+</div>

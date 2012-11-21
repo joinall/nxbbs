@@ -1,0 +1,12 @@
+﻿<ul class="breadcrumb">
+<% links.each do |link| %>
+  <% if link == links.last %>
+    <li class="active"><%= link.first %></li>
+  <% else %>
+    <li>
+      <%= link_to link.first, link.last %>
+      <span class="divider">/</span>
+    </li>
+  <% end %>
+<% end %>
+</ul>

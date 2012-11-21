@@ -1,0 +1,10 @@
+﻿<div class="row-fluid">
+  <div class="span10">
+    <%= render :partial => 'topic_list' %> 
+    <!--Body content-->
+  </div>
+  <div class="span2">
+    <!--Sidebar content-->
+  </div>
+</div>
+   

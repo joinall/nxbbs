@@ -1,0 +1,27 @@
+
+<div class="reply" id="reply<%= @reply_counter %>">
+  <div class="pull-left face"><%=  getavatar(reply.user,:normal) %></div>
+  
+  <div class="pull-right">
+    <%if owner?(reply) %>
+      <a href="<%= edit_topic_reply_path(@topic,reply)%>" title="修改"><i class="icon-pencil"></i></a>
+    <% end %>
+  </div>
+  <div class="infos">
+    <div class="info">
+     <span class="name">
+        <%= @reply_counter %><%= t("common.floor")%>,
+        <%= link_to reply.user.netname,reply.user %>,
+        <%= time_ago_in_words(reply.created_at) %>
+      </span>
+    </div>
+    <div class="body">
+        <% if reply.content.blank? %>
+          .       
+        <% else %>
+      <%= simple_format(reply.content) %>
+        <% end %>
+    </div>
+  </div>
+</div>
+  <% @reply_counter +=  1 %>

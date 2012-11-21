@@ -1,0 +1,56 @@
+﻿<% @title = @topic.title %>
+<%= render "shared/breadcrumb" ,links: [["首页",root_path],["论坛",topics_path],[@topic.node.name ,@topic.node],["浏览帖子",""]] %>
+<div id="main" class="container-fluid">
+  <div class="content">
+    
+    <div id="topic_show" class="topics box hfeed">
+      <div class="topic hentry">
+        <%= render :partial => "topics/topic_info", :locals => { :topic => @topic} %>
+        <div class="body entry-content">
+          <%= raw( @topic.content) %>
+        </div> 
+        <div class="tools">
+          <% if  owner?(@topic) %>
+            <a href = "<%= edit_topic_path(@topic) %>" title="修改"><i class="icon-pencil"></i></a>
+           <!-- <a href = "<%= topic_path(@topic) %>" data-confirm="确定要删除么？" data-method="delete" rel="nofollow" title="删除"><i class="icon-remove"></i></a> -->
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <% if @replies.blank? %>
+      <div class="no_result">
+        <%= t("topics.no_replies") %>
+      </div>
+    <% else %>
+      <div id="replies" class="box">
+        <div class="total">
+          共收到 <b><%= @topic.replycount %></b> 条回复
+        </div>
+        <%= render :partial => "replies/reply" ,:collection => @replies %>
+      </div>
+    <% end %>
+
+    <% if @topic.unreply_fromAdmin %>
+       <div class="alert"><%= t("topics.unreply_fromAdmin")%></div>
+    <% else %>
+      <% if @topic.unreply_all %>
+        <div class="alert"><%= t("topics.unreply_all")%></div>
+      <% else %>
+        <% if @topic.unreply_other  and @topic.user != current_user%>
+          <div class="alert"><%= t("topics.unreply_other")%></div>
+        <% else %>
+          <div id="reply" class="form box">
+            <%= form_for @nreply, :url => topic_replies_path(@topic) do |f| %>
+              <%= render "shared/error_messages",:target => @nreply%> 
+              <%= f.text_area :content ,:rows => 4 %>
+              <%= f.submit "提交回复",:class => "btn btn-primary" %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+   </div>
+  <%= render "shared/sidebar"  %>
+</div>

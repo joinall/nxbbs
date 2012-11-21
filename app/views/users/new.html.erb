@@ -1,0 +1,39 @@
+<% @title = "用户注册" %>
+<%= render "shared/breadcrumb" ,links: [["首页",root_path],["用户",""]] %>
+<%= notice_message %>
+<div id="main" class="container-fluid">
+  <div class="content">
+    <div class="box">
+     <%= form_for @user ,:html=>{ :class => "form-horizontal"} do |f| %>
+      <fieldset>
+        <legend>用户注册</legend>
+          <%= render "shared/error_messages",:target => @user%> 
+
+          <div class="control-group">
+            <%= f.label :oacode,:class =>"control-label" %>
+            <%= f.text_field :oacode %><span class="help-inline">* 注册成功后，用OA号登录论坛。</span>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :oapass,:class =>"control-label" %>
+            <%= f.password_field :oapass %><span class="help-inline">* 使用OA用户名密码注册，注册成功后，可以修改论坛密码。</span>
+          </div>
+          <div class="control-group">
+            <%= f.label :netname ,:class => "control-label" %>
+            <%= f.text_field :netname %><span class="help-inline">* 在论坛中公开显示的名称，注册后可以修改。</span>
+          </div>
+          
+          <div class="control-group"> 
+            <label class="control-label"></label>
+            <%= f.submit "注册", :class => "btn btn-primary" %>
+          </div>
+      </fieldset>
+    <% end %>
+    
+
+  </div>
+ </div>
+  <%= render "shared/userreg_sidebar" %>
+</div>
+
+

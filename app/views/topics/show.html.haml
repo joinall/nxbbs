@@ -1,0 +1,35 @@
+= render 'shared/breadcrumb',links: [["首页",root_path],["论坛",topics_path],[@topic.node.name,@topic.node],["浏览帖子",""]]
+%section#show_topic
+  %section#topic_banner.box.info-box
+    %h1=@topic.title
+    %p.topic_info
+      = link_to @topic.node.name,@topic.node,class:"node"
+      = link_to @topic.user.netname,@topic.user
+      %span= " . "
+      ="发布于#{time_ago_in_words(@topic.created_at)} 之前"
+  %section#topic_content.box
+    %p=@topic.content
+  
+  %section#replies_banner.box.info-box
+    %span
+      - if @replies.blank?
+        = "没有回复"
+      - else
+        = "共收到 #{@replies.count} 条回复"
+
+  %section#replies.box
+    %ul
+      - @replies.each do |r|
+        %li
+          %a.span1(href="")
+            %img(src="/assets/normal.png")
+          %article.span8
+            =link_to r.user.netname,r.user,class: "user_link"
+            %span= "回复于 #{time_ago_in_words(r.created_at)} 之前"
+            %p= raw( r.content).html_safe
+            
+  %section#reply.box
+    =form_for Reply.new ,remote:false,url: topic_replies_path(@topic) do |f|
+      =f.text_area :content,rows:4
+      %input(type="submit" class="btn btn-primary" value="提交回复")
+

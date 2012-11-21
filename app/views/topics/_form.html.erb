@@ -1,0 +1,23 @@
+
+<%= simple_form_for @topic  do |f| %>
+  <fieldset>
+    <legend><%= @topic.new_record? ?  t("topics.create_topic") : t("topics.edit_topic") %></legend>
+    <%= render "shared/error_messages",:target => @topic%> 
+    标题：<span class="node_select"><%= f.select :node_id,options_for_select(Node.all.map{|node| [node.name,node.id]}, @topic.node_id)%></span>
+    <%= f.text_field :title,:class => "span4" %>
+    <div class="control-group">
+        <%= f.label :content,"正文", :class => "control-label" %>
+        <div class="controls">
+          <%= f.kindeditor :content,:as => :kindeditor,:input_html => { :simple_mode => true } %>
+        </div>
+    </div>
+    
+    <div class="submit-button">
+      <%= f.submit "保存" ,:class =>"btn btn-primary btn-large pull-right" %>
+    </div>
+    <div class = "control-group">
+     <label class="checkbox"> <%= f.check_box :unreply_all %> <%= t("topics.unreply_all") %> </label>
+     <label class="checkbox"> <%= f.check_box :unreply_other %> <%= t("topics.unreply_other") %> </label>
+    </div>
+  </fieldset>
+<% end %>

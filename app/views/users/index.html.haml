@@ -1,0 +1,9 @@
+%section#users_list
+  %strong 会员列表
+  %table
+    - User.all.each do |user|
+      %tr
+        %td 
+          %img(src="/assets/normal.png")
+        %td= link_to user.netname , user
+        %td= user.last_sign_in_at

@@ -1,0 +1,13 @@
+<div class="infos">
+  <div class="pull-right avatar_normal"><%= getavatar(topic.user,:normal) %></div>
+  <h1><%= truncate(topic.title, :length => 100) %></h1>
+  <div class="info leader">
+    <%= link_to topic.node.name,topic.node %>
+    •
+    <%= link_to topic.user.netname, topic.user %>
+    •
+    <%= t("common.created_at",:time=> time_ago_in_words(topic.created_at))%>
+    •
+    <%= topic.readtimes %><%= t("common.read_times") %>
+  </div>
+</div>

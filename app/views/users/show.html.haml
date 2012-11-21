@@ -1,0 +1,34 @@
+= render 'shared/breadcrumb' ,links:[["首页",root_path]]
+%section#user.box
+  %h1 个人信息
+  %img(src="/assets/normal.png")
+  %dl
+    %dt.span1 ID:
+    %dd
+      %strong= @user.netname
+    %dt.span1 姓名：
+    %dd= @user.username
+    %dt.span1 创建于:
+    %dd= @user.created_at
+  =link_to "修改",edit_user_path(@user)
+%section#user_recent_topics.box
+  %section#user_recent_topics_banner.box.info-box
+    %span 最近发布的帖子
+  %section#user_recent_topics_content.box
+    %ul
+      - @topics.each do |topic|
+        %li
+          =link_to topic.node.name,topic.node,class:"node"
+          =link_to topic.title,topic
+          %span="创建于#{ time_ago_in_words(topic.created_at)}之前"
+          
+%section#user_recent_replies.box
+  %section#user_recent_replies_banner.box.info-box
+    %span 最近回复的帖子
+  %section#user-rencent_replies_content.box
+    %ul
+      - @replies.each do |reply|
+        %li
+          = link_to  reply.topic.title,reply.topic
+          %span= "回复于 #{ time_ago_in_words(reply.created_at)} 之前"
+          %p=simple_format( reply.content)

@@ -1,0 +1,29 @@
+<% @title = "会员列表" %>
+<%= render "shared/breadcrumb",links:[["首页",root_path],["用户",""]] %>
+<div id="main" class="container-fluid">
+    <div class="user_list box clearfix">
+    <% if admin?(current_user) and @unusers.count > 0  %>
+    <div class="user_list box clearfix">
+      <fieldset>
+      <legend>需认证会员</legend>
+      <% @unusers.each do |user| %> 
+        <div class="span1">
+          <div><a href=<%= user_path(user)%>><%= getavatar(user,:normal) %></a> </div>
+          <div><a href=<%= user_path(user)%>><%= user.netname %></a></div>
+        </div>
+      <% end %> 
+      </fieldset>
+    </div>
+  <% end %>
+      <fieldset>
+      <legend>已认证会员</legend>
+      <% @newusers.each do |user| %> 
+        <div class="span1">
+          <div><a href=<%= user_path(user)%>><%= getavatar(user,:normal) %></a> </div>
+          <div><a href=<%= user_path(user)%>><%= user.netname %></a></div>
+        </div>
+      <% end %> 
+      </fieldset>
+      <div class="row-fuild"><%= will_paginate @newusers %></div>
+    </div>
+</div>

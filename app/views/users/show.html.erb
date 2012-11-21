@@ -1,0 +1,27 @@
+<% @title = @user.netname %>
+<%= render "shared/breadcrumb",links:[["首页",root_path],["用户",users_path],[@user.netname,""]] %>
+<div id="main" class="container-fluid">
+<div class="content">
+  <%= render "info" %>
+  <div class ="recent_topics box">
+    <h2 class="title">最近发表的帖子列表</h2>
+    <ul>
+      <% @topics.each do |item| %>
+        <li>
+          <span class="node"><%= link_to item.node.name,item.node,:class=>"node" %> </span>
+          <%= link_to  item.title,item %>
+          <span class="info"> at <%= time_ago_in_words(item.created_at) %> </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class = "box">
+    <h2 class="title"> 最近回复</h2>
+    <%= render "replies",:replies => @replies %>
+  </div>
+
+</div>
+
+<%= render "shared/sidebar" %>
+</div>

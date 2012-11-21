@@ -1,0 +1,16 @@
+- @topics.each do |topic|
+  %div.topic.topic_line
+    %div.pull-left.avatar
+      %img(src="/assets/normal.png")
+    %div.right_info
+      %div.pull-right.replies
+        = link_to "12",topic_path(topic),class: "count state_true"
+    %div.infos
+      %div.title
+        = link_to(truncate(topic.title, :length => 100), topic_path(topic), :title => topic.title)
+      %div.info
+        = link_to topic.node.name,topic.node
+        •
+        = link_to topic.user.netname,topic.user
+        = "发表于 #{time_ago_in_words(topic.created_at)} 之前"
+       %span.badge.badge-info 18

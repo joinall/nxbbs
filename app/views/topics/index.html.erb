@@ -1,0 +1,16 @@
+﻿<% @title = "南翔人论坛" %>
+<%= render "shared/breadcrumb" ,links: [["首页",root_path],["论坛",""]] %> 
+<div id="main" class="container-fluid">
+  <div class="content">
+    <div class="box box_gray">
+      <div id="node_info"> 
+        <h2>最新更新的帖子</h2>
+      </div>
+      <div class="topics">
+        <%= render :partial => 'topic_list' %> 
+      </div>
+      <%= will_paginate @topics %>
+    </div>
+  </div>
+  <%= render "shared/sidebar"  %>
+</div>

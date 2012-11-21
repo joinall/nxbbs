@@ -1,0 +1,8 @@
+<div class="box clearfix">
+  <h2>论坛版块</h2>
+  <ul>
+    <% @nodes.each do |t| %>
+      <li> <%= link_to t.name, t %> </li>
+    <% end %> 
+  </ul>
+</div>

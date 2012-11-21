@@ -1,0 +1,30 @@
+<%= render 'shared/breadcrumb',links: [["首页",""],["用户"]] %>
+<h2>注册新用户</h2>
+亲，南翔集团论坛需要实名注册后才能访问哦！
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  <div><%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+  <div><%= f.label :email %>
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :password %>
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.label :netname %>
+  <%= f.text_field :netname %></div>
+
+  <div><%= f.label :truename %>
+  <%= f.text_field :truename %></div>
+
+  <div><%= f.label :telephone %>
+  <%= f.text_field :telephone %></div>
+
+  <div><%= f.submit "提交注册信息" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>

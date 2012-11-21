@@ -1,0 +1,64 @@
+<script src="http://se.360.cn/common/qihoo_ie6_tips.js"></script>
+<% @title = "南翔人论坛" %>
+<div class = "hero-unit">
+  <h1>南翔人论坛上线了！</h1>
+  <p>请使用IE8及以上版本的浏览器访问。(如果您用的还是IE6、7，那就赶紧升级吧。)<br/>
+     推荐使用Chrome、Firefox，或者用360浏览器、搜狗浏览器的极速模式访问。</p>
+  <dl class="dl-horizontal">
+    <dt>论坛网址 外网：</dt><dd> <%= link_to "http://bbs.ahnanxiang.com.cn:81" ,"http://bbs.ahnanxiang.com.cn:81" %> </dd>
+    <dt>内网：</dt><dd> <%= link_to "http://192.168.0.5","http://192.168.0.5" %></dd>
+  </dl>
+
+  <p class="pull-right">
+    <% if current_user.blank? %>
+      <%= link_to "登录",new_session_path,:class => "btn btn-primary btn-large" %>
+      <%= link_to "注册",new_user_path,:class => "btn  btn-large" %> 
+    <% else %>
+      <%= link_to "进入论坛",topics_path ,:class => "btn  btn-large" %>
+      <%= link_to "注销","/logout",:class => "btn btn-primary btn-large" %>
+    <% end %>
+  </p>
+  <p><br/></p>
+</div>
+<!--
+<div class="row-fluid">
+  <ul class="thumbnails">
+    <li class="span3 well">
+      <div class="caption">
+        <h3>自由</h3>
+        <p>
+          你可以自由地发表言论！<br/>
+          但是，不要干违法的事情。如：诽谤他人、反天朝……
+        </p>
+      </div>
+    </li>
+    <li class="span3 well">
+      <div class="caption">
+        <h3>与工作无关</h3>
+        <p>
+          内容可以与工作无关。<br/>
+          可以交流学习、灌水盖楼、新闻八卦 ,甚至 发泄解闷……
+        </p>
+      </div>
+    </li>
+    <li class="span3 well">
+      <div class="caption">
+        <h3>实名认证</h3>
+        <p>
+          用户必须为南翔集团员工。<br/>
+          注册时需要实名认证，离职后将无法访问。
+        </p>
+      </div>
+    </li>
+    <li class="span3 well">
+      <div class="caption">
+        <h3>昵称展示</h3>
+        <p>
+          发帖、回帖均显示你的昵称.<br/>
+          穿上了马甲，别人不知道你就是那蛇  ^_^
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>
+-->

@@ -1,0 +1,69 @@
+﻿<% @title = "登录南翔人论坛"%>
+<%= notice_message %>
+<div id="main" class="container-fluid">
+  <div class="content">
+    <div class="box">
+      <%= form_tag :sessions,:class => "form-horizontal" do %>
+        <fieldset >
+          <legend>用户登录</legend>
+        
+          <div class="row-fluid">
+            <div class="span6 well">
+
+              <div class="control-group">
+                <%= label :username,"账号",:class=> "control-label"%>
+                  <%= text_field_tag :username,params[:username] %>
+              </div>
+
+              <div class= "control-group">
+                <%= label :password,"密码", :class => "control-label"%>
+                  <%= password_field_tag :password,params[:password] %>
+              </div>
+          
+              <div class = "control-group">
+                <label class="control-label"></label>
+                <%= submit_tag "登录" ,:class=>"btn btn-primary btn-large"%>
+              </div>
+            </div> 
+           
+            <div class="span6 well" >
+                 <strong style="color:red;"><em>Note:</em></strong> 
+              <p>
+              <i class="icon-random"></i> 本论坛仅为安徽南翔集团员工开放，需要注册后才能访问。<%= link_to "点此注册用户" ,new_user_path,:class => "btn btn-success btn-large" %> 
+              </p>
+              <p>
+                <i class="icon-eye-open"></i> 
+                请使用IE8版本以上的浏览器。 推荐使用
+                <%= link_to "火狐浏览器","http://www.firefox.com.cn",:target =>"_blank"%>、Chrome、
+                <%= link_to "360极速浏览器","http://chrome.360.cn",:target => "_blank" %>、
+                <%= link_to "搜狗浏览器（高速模式）","http://ie.sogou.com",:target => "_blank" %>访问。
+              </p>
+            </div>
+        
+          </div>
+
+        </fieldset>
+      <% end %>
+
+      <div class="row-fluid">
+        <fieldset>
+        <legend>发帖须知</legend>
+        <p>
+           为保证论坛的健康、绿色，本论坛用户不得在论坛上发表包含以下内容的言论：
+           <ol>
+              <li>违反国家法律法规和企业规章制度的；</li>
+              <li>散布迷信、谣言、淫秽、色情、赌博、暴力、恐怖或者教唆犯罪的；</li>
+              <li>侮辱、诽谤或者中伤他人，侵害他人合法权益的；</li>
+              <li>损害企业形象、荣誉和利益的；</li>
+              <li>法律、行政法规禁止的其他内容。</li>
+            </ol>
+            如有违反上述条款，将依据有关规定进行责任追究。
+        </p>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <%= render "shared/userreg_sidebar" %>
+</div>
+
+

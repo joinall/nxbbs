@@ -1,0 +1,34 @@
+<% @title = "用户信息修改" %>
+<%= render "shared/breadcrumb",links:[["首页",root_path],["用户",""]] %>
+<%= notice_message %>
+<div id="main" class="container-fluid">
+  <div class="content">
+    <%= render "shared/error_messages",:target => @user%> 
+    <div class="box">
+      <%= simple_form_for @user,:html =>{:class =>"form-horizontal",:multipart => true} do |f| %>
+        <fieldset> 
+        <legend>修改基本资料</legend>
+    
+        <div class="pull-right avatar_big"><%= getavatar(@user,:big) %></div>
+        <div class="pull-left">
+          <div class="control-group"><%= f.label :netname,"论坛昵称" ,:class => "control-label"%> <%= f.text_field :netname %></div>
+          <div class="control-group"><label class ="control-label">选择头像 </label> <%= f.file_field :avatar %></div>
+          <div class="control-group"><label class= "control-label"></label><%= f.submit "修改",:class => "btn btn-primary" %></div>
+        </div>
+        </fieldset>
+       <% end %>
+    </div>
+    <div class = "box">
+      <%= form_tag "/changepass", :class => "form-horizontal" do %>
+      <fieldset>
+        <legend>修改密码</legend>
+        <div class="control-group"><label class="control-label">原密码</label><%= password_field_tag :oldpass %></div>
+        <div class="control-group"><label class="control-label">新密码</label><%= password_field_tag :newpass %></div>
+        <div class="control-group"><label class="control-label">重复新密码</label><%= password_field_tag :newpass_confirm %></div>
+        <div class="control-group"><label class="control-label"></label><%= submit_tag "修改密码",:class =>"btn btn-primary" ,:id => "up"%></div>
+      </fieldset>
+      <% end %>
+    </div>
+  </div>
+  <%= render "shared/sidebar" %>
+</div>

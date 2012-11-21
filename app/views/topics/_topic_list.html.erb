@@ -1,0 +1,32 @@
+﻿<%if @topics.blank? %>
+  <div class="alert alert-success">亲，该版块等你多时了，点这里发帖。<%= link_to "发帖",new_topic_path,:class => "btn"%></div>
+<% else %>
+<% @topics.each do |topic| %>
+<div class="topic topic_line">
+  <div class="pull-left avatar">
+    <%=  getavatar(topic.user,:normal) %>
+  </div>
+  <div class="right_info">
+    <div class="pull-right replies">
+      <% if topic.replycount? %>
+          <span class = "badge badge-success" > <%=  topic.replycount %> </span>
+      <% end %>
+    </div>
+    <div class="infos">
+      <div class="title">
+        <%= link_to(truncate(topic.title, :length => 100), topic_path(topic), :title => topic.title) %>
+      </div>
+      <div class="info">
+        <%=  link_to(topic.node.name, topic.node, :class => "node") %>
+        •
+        <%= link_to(topic.user.netname, topic.user) %> 
+        •
+        <% if topic.last_reply_user_id? %>
+        <%= t("common.last_by")%> <%= link_to  topic.last_reply_user.netname ,user_path(topic.last_reply_user_id) %> <%=t("common.reply_at",:time => time_ago_in_words(topic.last_replytime )) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+<% end %>

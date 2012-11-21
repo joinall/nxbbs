@@ -1,0 +1,2 @@
+class AdminTopicController < ApplicationController
+end
