@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   
   before_filter :check_login
   def index
-    @topics = Topic.select("id,title,node_id,user_id,last_reply_user_id,last_replytime,replycount,updated_at,created_at").order("last_replytime desc").includes(:user).paginate(:page=> params[:page],:per_page => 10)
+    @topics = Topic.select("id,title,node_id,user_id,last_reply_user_id,last_replytime,replycount,updated_at,created_at").order("last_replytime desc").includes(:user).paginate(:page=> params[:page],:per_page => 15)
   end
   
   def show
